@@ -18,6 +18,7 @@
 autocmd FileType c# setlocal shiftwidth=4 softtabstop=4 expandtab
 autocmd BufNewFile,BufRead *.cs set formatprg=astyle\ -T4pb
 set timeoutlen=1000 ttimeoutlen=0
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 set nocompatible
 set backupcopy=yes
