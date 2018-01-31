@@ -13,6 +13,10 @@ let mapleader = ','
 " two spaces
 :set tabstop=2
 :set shiftwidth=2
+:set softtabstop=0 
+:set expandtab 
+:set shiftwidth=2 
+:set smarttab
 
 " Make backspace behave normally
 set backspace=indent,eol,start
@@ -22,7 +26,7 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " tree view
 map <C-n> :NERDTreeToggle<CR>
- 
+
 " runtime path for ctrl-p
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 
@@ -30,7 +34,10 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 execute pathogen#infect()
 
 " theme
-colors dues
+colorscheme onedark
+" colorscheme crunchbang
+" set background=light
+" colorscheme solarized
 
 " when opening a new tab, immediately show fuzzy finder
 nnoremap tt :tabe<CR><bar>:CtrlP<CR>
@@ -64,12 +71,29 @@ set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
 
+" set relative number as default
+set relativenumber
+
 " toggle between number and relativenumber
 function! ToggleNumber()
-	if(&relativenumber == 1)
-		set norelativenumber
-		set number
-	else
-		set relativenumber
-	endif
+  if(&relativenumber == 1)
+    set norelativenumber
+    set number
+  else
+    set relativenumber
+  endif
 endfunc
+
+" Use .js highlighting in .jsx
+let g:jsx_ext_required = 0
+
+" Run last command in tmux pain using Leader r
+nnoremap <Leader>r :call <SID>TmuxRepeat()<CR>
+
+function! s:TmuxRepeat()
+  silent! exec "!tmux select-pane -l && tmux send up enter && tmux select-pane -l"
+  redraw!
+endfunction
+
+" treat all numerals as decimal
+set nrformats=
