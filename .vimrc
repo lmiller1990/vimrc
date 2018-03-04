@@ -26,8 +26,22 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " tree view
 map <C-n> :NERDTreeToggle<CR>
-" save
+
+" save with ctrl-s
 map <C-s> :w<CR>
+
+" tab autocompletion
+function! Tab_Or_Complete()
+  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+    return "\<C-N>"
+  else
+    return "\<Tab>"
+  endif
+endfunction
+:inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+:set dictionary="/usr/dict/words"
+
+" map <tab> <C-n>
 
 " runtime path for ctrl-p
 set runtimepath^=~/.vim/bundle/ctrlp.vim
