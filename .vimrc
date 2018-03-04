@@ -26,6 +26,8 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " tree view
 map <C-n> :NERDTreeToggle<CR>
+" save
+map <C-s> :w<CR>
 
 " runtime path for ctrl-p
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -57,9 +59,6 @@ nnoremap k gk
 nnoremap B ^
 nnoremap E $
 "
-" " $/^ doesn't do anything
-nnoremap $ <nop>
-nnoremap ^ <nop>"
 
 " toggle gundo
 nnoremap <leader>u :GundoToggle<CR>
@@ -86,14 +85,6 @@ endfunc
 
 " Use .js highlighting in .jsx
 let g:jsx_ext_required = 0
-
-" Run last command in tmux pain using Leader r
-nnoremap <Leader>r :call <SID>TmuxRepeat()<CR>
-
-function! s:TmuxRepeat()
-  silent! exec "!tmux select-pane -l && tmux send up enter && tmux select-pane -l"
-  redraw!
-endfunction
 
 " treat all numerals as decimal
 set nrformats=
