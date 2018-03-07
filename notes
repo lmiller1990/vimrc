@@ -1,0 +1,35 @@
+Install Chrome
+Map capslock to esc
+Install Homebrew
+  - https://brew.sh/
+  - `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+Install ZSH
+  - https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH
+  - brew install zsh zsh-completions
+
+Install oh-my-zsh
+  - http://ohmyz.sh/
+  -  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+Restart your terminal
+
+Install iTerm2
+  - https://www.iterm2.com/
+
+Powerlevel9k theme, first
+- Powerline fonts
+    -> https://github.com/powerline/fonts
+  - git clone https://github.com/powerline/fonts.git --depth=1
+
+   - git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+
+   - .zshrc -> theme="powerlevel9k"
+   - iterm -> pref -> text -> incostola powerline font
+
+Install Node
+
+Install maven - `brew install maven`
+
+Install mysql
+  - brew install mysql
+  - brew services start mysql
