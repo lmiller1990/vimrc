@@ -8,8 +8,15 @@
 " - surround.vim 
 " - emmit.vim
 "
-" Install by running:
+" I am using pathogen.vim to manage plugins.
+" Install pathogen by running:
+"
+" mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+" curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+"
+" Now install the plugins using by running:
 " cd ~/.vim/bundle
+"
 " git clone git://github.com/tpope/vim-surround.git
 " git clone https://github.com/scrooloose/nerdtree.git
 " git clone https://github.com/ctrlpvim/ctrlp.vim
