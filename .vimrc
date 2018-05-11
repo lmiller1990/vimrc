@@ -1,6 +1,5 @@
 " show line numbers
 set number
-
 " syntax highlighting
 syntax on
 "
@@ -22,29 +21,21 @@ let mapleader = ','
 set backspace=indent,eol,start
 
 " ignore node_modules and DS_Store files
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git|resources|vendor'
+
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+
+let g:ctrlp_max_files=0
 
 " tree view
 map <C-n> :NERDTreeToggle<CR>
 
-" save with ctrl-s
-map <C-s> :w<CR>
-
-" tab autocompletion
-function! Tab_Or_Complete()
-  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-    return "\<C-N>"
-  else
-    return "\<Tab>"
-  endif
-endfunction
-:inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
-:set dictionary="/usr/dict/words"
-
-" map <tab> <C-n>
-
 " runtime path for ctrl-p
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_max_files=0
 
 " pathogen to install packages
 execute pathogen#infect()
@@ -73,9 +64,10 @@ nnoremap k gk
 nnoremap B ^
 nnoremap E $
 "
+" " $/^ doesn't do anything
+nnoremap $ <nop>
+nnoremap ^ <nop>"
 
-" toggle gundo
-nnoremap <leader>u :GundoToggle<CR>
 
 " .swp files are annoying
 set backup
@@ -100,5 +92,33 @@ endfunc
 " Use .js highlighting in .jsx
 let g:jsx_ext_required = 0
 
+" Run last command in tmux pain using Leader r
+nnoremap <Leader>r :call <SID>TmuxRepeat()<CR>
+
+" Autocomplete with Tab
+function! Tab_Or_Complete()
+  if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
+    return "\<C-N>"
+  else
+    return "\<Tab>"
+  endif
+endfunction
+:inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
+:set dictionary="/usr/dict/words"
+
 " treat all numerals as decimal
 set nrformats=
+
+" matching def/ends in ruby
+runtime macros/matchit.vim
+
+function! Resize80Cols()
+  vertical resize 80  
+endfunction
+
+" Better splits
+nnoremap <C-J> <C-W><C-J>:call Resize80Cols()<CR>
+nnoremap <C-K> <C-W><C-K>:call Resize80Cols()<CR>
+nnoremap <C-L> <C-W><C-L>:call Resize80Cols()<CR>
+nnoremap <C-H> <C-W><C-H>:call Resize80Cols()<CR>
+
