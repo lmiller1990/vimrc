@@ -89,6 +89,8 @@ set nrformats=
 " matching def/ends in ruby
 runtime macros/matchit.vim
 
+" Quickly switch betweeen two files using ,,
+nnoremap <leader><leader> <C-^>
 """"""""""""""""""
 " Tabs
 """"""""""""""""""
