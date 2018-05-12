@@ -91,6 +91,7 @@ runtime macros/matchit.vim
 
 " Quickly switch betweeen two files using ,,
 nnoremap <leader><leader> <C-^>
+
 """"""""""""""""""
 " Tabs
 """"""""""""""""""
@@ -161,6 +162,11 @@ nnoremap <C-J> <C-W><C-J>:call Resize80Cols()<CR>
 nnoremap <C-K> <C-W><C-K>:call Resize80Cols()<CR>
 nnoremap <C-L> <C-W><C-L>:call Resize80Cols()<CR>
 nnoremap <C-H> <C-W><C-H>:call Resize80Cols()<CR>
+
+""""""""""""""""""""""""""""""
+" Executing command line
+""""""""""""""""""""""""""""""
+nnoremap <leader>r :!!<CR>
 
 """"""""""""""""""""""""""""""
 " Misc
