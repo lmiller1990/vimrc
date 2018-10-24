@@ -7,6 +7,7 @@
 " - nerdtree for tree viewer
 " - surround.vim 
 " - emmit.vim
+" - ALE for language server (eg for TypeScript autocompletion)
 "
 " I am using pathogen.vim to manage plugins.
 " Install pathogen by running:
@@ -20,7 +21,8 @@
 " git clone git://github.com/tpope/vim-surround.git
 " git clone https://github.com/scrooloose/nerdtree.git
 " git clone https://github.com/ctrlpvim/ctrlp.vim
-" https://github.com/mattn/emmet-vim.git
+" git clone https://github.com/mattn/emmet-vim.git
+" git clone https://github.com/w0rp/ale.git
 "
 " And you should be good to go!
 
@@ -44,6 +46,7 @@ set ttimeoutlen=100
 :set shiftwidth=2 
 :set smarttab
 
+imap <c-J> <nop>
 """"""""""""""""""""""""""""""""
 " Movement within a file
 """"""""""""""""""""""""""""""""
@@ -107,8 +110,22 @@ noremap <space><tab> gT
 " Plugins 
 """"""""""""""""""""""""""""""
 
+" Ale for autocompletion
+" Enable completion where available.
+" Including .vue files
+" This setting must be set before ALE is loaded.
+let g:ale_linter_aliases = {'vue': 'typescript'}
+let g:ale_linters = {'vue': ['tsserver']}
+" let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_completion_enabled = 1
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_list_window_size = 5
+
 " USe pathogen to install packages
 execute pathogen#infect()
+
 
 """ ctrlp settings
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git|resources|vendor'
@@ -164,7 +181,7 @@ nnoremap <C-L> <C-W><C-L>:call Resize80Cols()<CR>
 nnoremap <C-H> <C-W><C-H>:call Resize80Cols()<CR>
 
 """"""""""""""""""""""""""""""
-" Executing command line
+" Rerun command line arg with ,r
 """"""""""""""""""""""""""""""
 nnoremap <leader>r :!!<CR>
 
@@ -175,3 +192,9 @@ nnoremap <leader>r :!!<CR>
 " Use .js highlighting in .jsx
 let g:jsx_ext_required = 0
 
+" Load all plugins now.
+" Plugins need to be added to runtimepath before helptags can be generated.
+packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+silent! helptags ALL
