@@ -24,6 +24,9 @@
 " git clone https://github.com/mattn/emmet-vim.git
 " git clone https://github.com/w0rp/ale.git
 "
+" brew install ctags
+" (in your repo) ctags -R .
+"
 " And you should be good to go!
 
 """"""""""""""""""""""""""""""""
@@ -94,6 +97,12 @@ runtime macros/matchit.vim
 
 " Quickly switch betweeen two files using ,,
 nnoremap <leader><leader> <C-^>
+
+""""""""""""""""""
+" Navigation to other files 
+""""""""""""""""""
+
+command! MakeTags !ctags -R .
 
 """"""""""""""""""
 " Tabs
